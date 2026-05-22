@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "VaultAccount": {
+      "title": "Vault Account",
+      "description": "An account stored in the user's vault, with an encrypted password.",
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "The name of the platform/website (e.g. Google, Facebook)."
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "description": "The ENCRYPTED password."
+        },
+        "category": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Encrypted or plain notes."
+        },
+        "createdAt": {
+          "type": "timestamp"
+        },
+        "updatedAt": {
+          "type": "timestamp"
+        }
+      },
+      "required": ["platform", "password", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/accounts/{accountId}": {
+      "schema": { "$ref": "#/entities/VaultAccount" },
+      "description": "The vault accounts for a specific user."
+    }
+  }
+}
