@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --animate-spin-slow: spin 4s linear infinite;
+  --animate-spin-slow-reverse: spin-reverse 3s linear infinite;
+  --animate-pulse-fast: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-progress-indeterminate: progress-indeterminate 2s ease-in-out infinite;
+
+  @keyframes spin-reverse {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  @keyframes pulse-fast {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.95); }
+  }
+  @keyframes progress-indeterminate {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); width: 50%; }
+    100% { transform: translateX(300%); width: 30%; }
+  }
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+}
+
+/* Fix for browser autofill overriding dark background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: #1e293b !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover, 
+.dark input:-webkit-autofill:focus, 
+.dark input:-webkit-autofill:active{
+    -webkit-text-fill-color: #f1f5f9 !important;
+}
